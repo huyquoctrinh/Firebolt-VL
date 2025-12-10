@@ -1,0 +1,85 @@
+# Hydra configuration for Firebolt-LM
+
+# --- Model Configuration ---
+model:
+  # Language Model Backbone
+  lm_name_or_path: "LiquidAI/LFM2-350M"
+  
+  # Vision Encoder (SigLIP)
+  vision_ckpt_path: "/home/mamba/ML_project/Testing/Huy/joint_vlm/viper-vlm/pretrained/siglip2_base_16_256/"
+  vision_hidden_size: 768
+  vision_output_tokens: 256
+  vision_freeze: False
+  
+  # Projector (Vision to Text Space)
+  projector_hidden: 1024
+  projector_layers: 2
+  projector_dropout: 0.1
+  projector_type: "residual_ffn"  # Options: "mlp", "residual_ffn"
+  
+  # Fusing
+  fuse_strategy: "cossm"
+  fuse_heads: 8
+  fuse_attn_dropout: 0.1
+  fuse_proj_dropout: 0.1
+  fuser_freeze: False
+
+
+  # LLM (Liquid)
+  freeze_llm: False
+
+  # Special Tokens
+  image_token_id: 64400 # Will be set based on tokenizer
+
+# --- Data Configuration ---
+data:
+  image_path: "/home/mamba/ML_project/Testing/Huy/joint_vlm/dataset/"
+  json_path: "/home/mamba/ML_project/Testing/Huy/joint_vlm/dataset/sharellava_mmpr12_merged_converted_fixed.jsonl"
+  train_val_split: [0.99, 0.01]
+
+# --- Training Configuration ---
+training:
+  # General
+  num_epochs: 3
+  batch_size: 4
+  num_workers: 32
+  device: "cuda"
+  results_dir: "results_full_mmpr12_sharegpt_cot_fixed"
+  stage: 1
+  resume_from_checkpoint: "/home/mamba/ML_project/Testing/Huy/joint_vlm/Viper-LM/outputs/2025-12-08/23-05-23/results_full_mmpr12_sharegpt_cot_fixed/epoch_3"
+  # Optimizer (AdamW)
+  optimizer:
+    lr: 1e-4
+  
+  # Scheduler (CosineAnnealingLR)
+  scheduler:
+    T_max: 10
+    eta_min: 1e-6
+    
+  # Distributed Data Parallel (DDP)
+  ddp:
+    enabled: True
+    rank: 0
+    world_size: 1
+
+  # Mixed Precision
+  amp_dtype: "bf16" # "bf16" or "fp16"
+
+# --- Evaluation Configuration ---
+evaluation:
+  model_dir: "/home/mamba/ML_project/Testing/Huy/joint_vlm/Viper-LM/outputs/2025-12-08/23-05-23/results_full_mmpr12_sharegpt_cot_fixed/epoch_3/"
+  tokenizer_dir: "/home/mamba/ML_project/Testing/Huy/joint_vlm/liquid_tokenizer_cot_fixed"
+  prompt: "Describe the image in detail?"
+  image_path: "/home/mamba/ML_project/Testing/Huy/joint_vlm/Viper-LM/examples/messi-1805.jpg" # Optional path to an image file
+  do_sample: True 
+  top_p: 0.9
+  temperature: 0.7
+  max_new_tokens: 256
+
+# --- Tokenizer and Processor ---
+tokenizer_path: "/home/mamba/ML_project/Testing/Huy/joint_vlm/liquid_tokenizer_cot_fixed"
+processor_path: "/home/mamba/ML_project/Testing/Huy/joint_vlm/viper-vlm/pretrained/siglip2_base_16_256/" # Often same as vision_ckpt_path
+
+# --- Logging ---
+logging:
+  filename: "logs/training.log"

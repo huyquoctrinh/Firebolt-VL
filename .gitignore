@@ -1,0 +1,12 @@
+*__pycache__/
+*.egg-info/
+build/
+**.so
+**.ipynb
+pretrained/
+results/
+test_pretrained/
+filtered_llava.json
+*.json
+outputs/
+logs/
