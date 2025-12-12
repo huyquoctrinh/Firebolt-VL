@@ -6,7 +6,7 @@ model:
   lm_name_or_path: "LiquidAI/LFM2-350M"
   
   # Vision Encoder (SigLIP)
-  vision_ckpt_path: "/home/mamba/ML_project/Testing/Huy/joint_vlm/viper-vlm/pretrained/siglip2_base_16_256/"
+  vision_ckpt_path: "./pretrained/siglip2_base_16_256/"
   vision_hidden_size: 768
   vision_output_tokens: 256
   vision_freeze: False
@@ -33,8 +33,8 @@ model:
 
 # --- Data Configuration ---
 data:
-  image_path: "/home/mamba/ML_project/Testing/Huy/joint_vlm/dataset/"
-  json_path: "/home/mamba/ML_project/Testing/Huy/joint_vlm/dataset/sharellava_mmpr12_merged_converted_fixed.jsonl"
+  image_path: "./dataset/"
+  json_path: "mmpr12_merged_converted_fixed.jsonl"
   train_val_split: [0.99, 0.01]
 
 # --- Training Configuration ---
@@ -46,7 +46,7 @@ training:
   device: "cuda"
   results_dir: "results_full_mmpr12_sharegpt_cot_fixed"
   stage: 1
-  resume_from_checkpoint: "/home/mamba/ML_project/Testing/Huy/joint_vlm/Viper-LM/outputs/2025-12-08/23-05-23/results_full_mmpr12_sharegpt_cot_fixed/epoch_3"
+  resume_from_checkpoint: "./results_full_mmpr12_sharegpt_cot_fixed/epoch_3"
   # Optimizer (AdamW)
   optimizer:
     lr: 1e-4
@@ -67,18 +67,18 @@ training:
 
 # --- Evaluation Configuration ---
 evaluation:
-  model_dir: "/home/mamba/ML_project/Testing/Huy/joint_vlm/Viper-LM/outputs/2025-12-08/23-05-23/results_full_mmpr12_sharegpt_cot_fixed/epoch_3/"
-  tokenizer_dir: "/home/mamba/ML_project/Testing/Huy/joint_vlm/liquid_tokenizer_cot_fixed"
+  model_dir: "./firebolt_vl/"
+  tokenizer_dir: "./liquid_tokenizer_cot_fixed"
   prompt: "Describe the image in detail?"
-  image_path: "/home/mamba/ML_project/Testing/Huy/joint_vlm/Viper-LM/examples/messi-1805.jpg" # Optional path to an image file
+  image_path: "examples/messi-1805.jpg" # Optional path to an image file
   do_sample: True 
   top_p: 0.9
   temperature: 0.7
   max_new_tokens: 256
 
 # --- Tokenizer and Processor ---
-tokenizer_path: "/home/mamba/ML_project/Testing/Huy/joint_vlm/liquid_tokenizer_cot_fixed"
-processor_path: "/home/mamba/ML_project/Testing/Huy/joint_vlm/viper-vlm/pretrained/siglip2_base_16_256/" # Often same as vision_ckpt_path
+tokenizer_path: "./liquid_tokenizer_cot_fixed"
+processor_path: "./pretrained/siglip2_base_16_256/" # Often same as vision_ckpt_path
 
 # --- Logging ---
 logging:
