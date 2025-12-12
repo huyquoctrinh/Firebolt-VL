@@ -39,7 +39,7 @@ Compared to Transformer-style cross-attention fusion, Firebolt-VL emphasizes **t
 
 <div align="center">
   <a href="./">
-    <img src="assets/firebolt_vl.jpg" width="85%" alt="Firebolt-VL Architecture"/>
+    <img src="firebolt_vl.jpg" width="85%" alt="Firebolt-VL Architecture"/>
   </a>
 </div>
 
