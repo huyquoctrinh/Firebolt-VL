@@ -2,6 +2,9 @@
 
 **Accepted at CVPR Workshop 2026 (ECV)** 🎉
 
+[![arXiv](https://img.shields.io/badge/arXiv-2604.04579-b31b1b.svg)](https://arxiv.org/abs/2604.04579)
+[![Website](https://img.shields.io/badge/Project-Website-blue)](https://fireboltvl.github.io/)
+
 ***Note:*** Firebolt-VL is under active development. For best results on your domain, we recommend post-training on your target data.
 
 ---
@@ -34,7 +37,6 @@ Compared to Transformer-style cross-attention fusion, Firebolt-VL emphasizes **t
 * ✅ **Released** — Inference code
 * ✅ **Released** — Training script(s)
 * 🧩 **Coming Soon** — More documentation (training recipes, evaluation, post-training: LoRA/DPO/GRPO)
-* 🧩 **Coming Soon** — vLLM/ollama serving
 
 ---
 
