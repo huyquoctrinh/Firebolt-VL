@@ -1,6 +1,8 @@
 # 🔥 **FIREBOLT-VL: Efficient Vision-Language Understanding with Cross-Modality Modulation**
 
-***Note:*** Firebolt-VL is under active development. For best results on your domain, we recommend fine-tuning on your target data.
+**Accepted at CVPR Workshop 2026 (ECV)** 🎉
+
+***Note:*** Firebolt-VL is under active development. For best results on your domain, we recommend post-training on your target data.
 
 ---
 
@@ -32,6 +34,7 @@ Compared to Transformer-style cross-attention fusion, Firebolt-VL emphasizes **t
 * ✅ **Released** — Inference code
 * ✅ **Released** — Training script(s)
 * 🧩 **Coming Soon** — More documentation (training recipes, evaluation, post-training: LoRA/DPO/GRPO)
+* 🧩 **Coming Soon** — vLLM/ollama serving
 
 ---
 
@@ -169,7 +172,22 @@ if __name__ == "__main__":
         image_path="demo.jpg",
         question="What is the destination city searched in this image?"
     ))
-````
+```
+
+---
+
+## 📝 Citation
+
+If you find Firebolt-VL useful in your research, please consider citing our paper:
+
+```bibtex
+@article{trinh2026firebolt,
+  title={Firebolt-VL: Efficient Vision-Language Understanding with Cross-Modality Modulation},
+  author={Trinh, Quoc-Huy and Abdullahi, Mustapha and Zhao, Bo and Jha, Debesh},
+  journal={arXiv preprint arXiv:2604.04579},
+  year={2026}
+}
+```
 
 ---
 
@@ -188,4 +206,3 @@ For questions, collaborations, or issues:
 👉 [https://github.com/huyquoctrinh](https://github.com/huyquoctrinh) (open an issue or reach out via GitHub)
 
 ---
-
